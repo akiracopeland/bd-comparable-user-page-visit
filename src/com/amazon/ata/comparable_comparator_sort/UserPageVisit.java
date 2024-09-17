@@ -35,16 +35,12 @@ public class UserPageVisit implements Comparable<UserPageVisit> {
         return timeOnPageInSeconds;
     }
 
-    /**
-     * The method that checks if this object is equal to another object. If the object is of same type,
-     * the fields that are compared for equality are userId and page. Field timeOnPageInSeconds is ignored.
-     * @param o - object to compare this object against.
-     * @return true if objects are equal, false otherwise.
-     */
     @Override
     public boolean equals(Object o) {
-        // PARTICIPANTS: implement equals method here (hint: you can use intellij's auto-generate).
-        return true;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserPageVisit that = (UserPageVisit) o;
+        return userId == that.userId && Objects.equals(page, that.page);
     }
 
     @Override
@@ -66,7 +62,15 @@ public class UserPageVisit implements Comparable<UserPageVisit> {
     @Override
     public int compareTo(UserPageVisit other) {
         // PARTICIPANTS: implement compareTo method here
-        return 0;
+
+        if (this.userId < other.userId) {
+            return -1;
+        }
+        else if (this.userId > other.userId) {
+            return 1;
+        }else {
+            return this.page.compareTo(other.page);
+            }
     }
 
     @Override
